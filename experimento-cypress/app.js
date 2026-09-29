@@ -9,22 +9,27 @@ function saveTasks() {
 }
 function renderTasks() {
  taskList.innerHTML = '';
+ 
  tasks.forEach((task, index) => {
- const listItem = document.createElement('li');
- const taskText = document.createElement('span');
- taskText.textContent = task;
- const removeButton = document.createElement('button');
- removeButton.textContent = 'Remover';
- removeButton.setAttribute('data-cy', 'remove-button');
- removeButton.addEventListener('click', () => {
- tasks.splice(index, 1);
- saveTasks();
- renderTasks();
- });
- listItem.appendChild(taskText);
- listItem.appendChild(removeButton);
- taskList.appendChild(listItem);
- });
+    const listItem = document.createElement('li');
+ 
+    const taskText = document.createElement('span');
+    taskText.textContent = task;
+ 
+    const removeButton = document.createElement('button');
+ 
+    removeButton.textContent = 'Remover';
+    removeButton.setAttribute('data-cy', 'remove-button');
+    removeButton.addEventListener('click', () => {
+        tasks.splice(index, 1);
+        saveTasks();
+        renderTasks();
+    });
+
+    listItem.appendChild(taskText);
+    listItem.appendChild(removeButton);
+    taskList.appendChild(listItem);
+    });
  taskCount.textContent = tasks.length;
 }
 form.addEventListener('submit', (event) => {
